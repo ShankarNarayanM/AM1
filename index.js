@@ -7,7 +7,12 @@ const app = express()
 function f2(req, res, avail_keywords){
     let prefixResult = [];
     let valid_keywords = new Array();
-    let keywords = req.query.keywords.split(',')
+    let keywords = req.query.keywords
+    if(typeof(keywords) != "string"){
+        return "Enter a query in URL";
+    }
+    
+    keywords = keywords.split(',')
     keywords.map((val)=>{
         if(avail_keywords.includes(val))
         {
